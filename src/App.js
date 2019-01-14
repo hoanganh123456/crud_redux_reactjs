@@ -8,7 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tasks : [],
+      // tasks : [],
       isDisplayForm: false,
       editTaskList: null,
       filter : {
@@ -20,14 +20,14 @@ class App extends Component {
       sortValue: 1
     }
   }
-  componentWillMount = () => {
-    if (localStorage && localStorage.getItem('tasks')) {
-      let tasks = JSON.parse(localStorage.getItem('tasks'));
-      this.setState({
-        tasks: tasks
-      });
-    }
-  }
+  // componentWillMount = () => {
+  //   if (localStorage && localStorage.getItem('tasks')) {
+  //     let tasks = JSON.parse(localStorage.getItem('tasks'));
+  //     this.setState({
+  //       tasks: tasks
+  //     });
+  //   }
+  // }
   // onGenerateData = () => {
   //   let tasks = [
   //     {
@@ -96,12 +96,12 @@ class App extends Component {
     localStorage.setItem('tasks',JSON.stringify(tasks));
   }
 
-  s4 = () => {
-    return Math.floor(( 1 + Math.random() ) * 0x10000 ).toString(16).substring(1);
-  }
-  generateID = () => {
-    return this.s4() + this.s4() + "-" + this.s4() + "-" + this.s4() + this.s4() + "-" + this.s4() + this.s4()
-  }
+  // s4 = () => {
+  //   return Math.floor(( 1 + Math.random() ) * 0x10000 ).toString(16).substring(1);
+  // }
+  // generateID = () => {
+  //   return this.s4() + this.s4() + "-" + this.s4() + "-" + this.s4() + this.s4() + "-" + this.s4() + this.s4()
+  // }
   onUpdateStatus = (id) => {
     let {tasks} = this.state;
     let index = this.findIndex(id);
@@ -172,41 +172,41 @@ class App extends Component {
     })
   }
   render() {
-    let { tasks, isDisplayForm, editTaskList, filter, keyword , sortBy, sortValue } = this.state;
+    let {  isDisplayForm, editTaskList, filter, sortBy, sortValue } = this.state;
     if (filter) {
-      if (filter.name) {
-        tasks = tasks.filter((task) => {
-          return task.name.toLowerCase().indexOf(filter.name) !== -1;
-        })
-      }
-        tasks = tasks.filter((task) => {
-          if (filter.status === -1) {
-            return task;
-          } else {
-            return task.status === (filter.status === 1 ? true : false);
-          }
-        })
+      // if (filter.name) {
+      //   tasks = tasks.filter((task) => {
+      //     return task.name.toLowerCase().indexOf(filter.name) !== -1;
+      //   })
+      // }
+        // tasks = tasks.filter((task) => {
+        //   if (filter.status === -1) {
+        //     return task;
+        //   } else {
+        //     return task.status === (filter.status === 1 ? true : false);
+        //   }
+        // })
     }
-    if (keyword) {
-      tasks = tasks.filter((task) => {
-        return task.name.toLowerCase().indexOf(keyword) !== -1;
-      })
-    }
+    // if (keyword) {
+    //   tasks = tasks.filter((task) => {
+    //     return task.name.toLowerCase().indexOf(keyword) !== -1;
+    //   })
+    // }
     let elmTaskForm = isDisplayForm ? <TaskForm onCloseForm = { this.onCloseForm } onSubmit = { this.onSubmit } editTaskList = { editTaskList }/> : '';
-    if (sortBy === 'name' ) {
-      tasks.sort((a,b) => {
-        if (a.name > b.name) return sortValue;
-        else if (a.name < b.name) return -sortValue;
-        else return 0
-      });
-    }
-    else {
-      tasks.sort((a,b) => {
-        if (a.status > b.status) return -sortValue;
-        else if (a.status < b.status) return sortValue;
-        else return 0
-      });
-    }
+    // if (sortBy === 'name' ) {
+    //   tasks.sort((a,b) => {
+    //     if (a.name > b.name) return sortValue;
+    //     else if (a.name < b.name) return -sortValue;
+    //     else return 0
+    //   });
+    // }
+    // else {
+    //   tasks.sort((a,b) => {
+    //     if (a.status > b.status) return -sortValue;
+    //     else if (a.status < b.status) return sortValue;
+    //     else return 0
+    //   });
+    // }
    
     return (
       <div className="container">

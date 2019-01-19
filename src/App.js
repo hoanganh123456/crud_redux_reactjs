@@ -3,13 +3,14 @@ import './App.css';
 import TaskForm from './Component/TaskForm';
 import Control from './Component/Control';
 import TaskList from './Component/TaskList';
-
+import { connect } from 'react-redux';
+import * as actions from './action/index'
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       // tasks : [],
-      isDisplayForm: false,
+      // isDisplayForm: false,
       editTaskList: null,
       filter : {
         name: '',
@@ -57,25 +58,26 @@ class App extends Component {
   //   localStorage.setItem('tasks',JSON.stringify(tasks));
   // }
 
-  onCloseForm = () => {
-    this.setState({
-      isDisplayForm: false,
-      editTaskList: null
-    })
-  }
+  // onCloseForm = () => {
+  //   this.setState({
+  //     isDisplayForm: false,
+  //     editTaskList: null
+  //   })
+  // }
 
   onFormToggle = () => {
-    if (this.state.isDisplayForm && this.state.editTaskList !== null) {
-      this.setState({
-        isDisplayForm: true,
-        editTaskList: null
-      })
-    } else {
-      this.setState({
-        isDisplayForm: !this.state.isDisplayForm,
-        editTaskList: null
-      })
-    }
+    // if (this.state.isDisplayForm && this.state.editTaskList !== null) {
+    //   this.setState({
+    //     isDisplayForm: true,
+    //     editTaskList: null
+    //   })
+    // } else {
+    //   this.setState({
+    //     isDisplayForm: !this.state.isDisplayForm,
+    //     editTaskList: null
+    //   })
+    // }
+    this.props.onToggleFrom();
     
   }
 
@@ -172,7 +174,10 @@ class App extends Component {
     })
   }
   render() {
-    let {  isDisplayForm, editTaskList, filter, sortBy, sortValue } = this.state;
+    let {  //isDisplayForm, 
+        editTaskList, filter, sortBy, sortValue 
+    } = this.state;
+    let { isDisplayForm } = this.props;
     if (filter) {
       // if (filter.name) {
       //   tasks = tasks.filter((task) => {
@@ -192,7 +197,10 @@ class App extends Component {
     //     return task.name.toLowerCase().indexOf(keyword) !== -1;
     //   })
     // }
-    let elmTaskForm = isDisplayForm ? <TaskForm onCloseForm = { this.onCloseForm } onSubmit = { this.onSubmit } editTaskList = { editTaskList }/> : '';
+    let elmTaskForm = isDisplayForm ? <TaskForm 
+      // onCloseForm = { this.onCloseForm } 
+      onSubmit = { this.onSubmit } 
+      editTaskList = { editTaskList }/> : '';
     // if (sortBy === 'name' ) {
     //   tasks.sort((a,b) => {
     //     if (a.name > b.name) return sortValue;
@@ -248,4 +256,18 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    isDisplayForm: state.isDisplayForm
+  };
+}
+
+const mapDispatchToProps = (dispatch,props) => {
+  return {
+    onToggleFrom: () => {
+      dispatch(actions.toggleForm())
+    }
+  };
+}
+
+export default connect(mapStateToProps,mapDispatchToProps) (App);

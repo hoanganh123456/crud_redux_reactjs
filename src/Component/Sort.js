@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 
 class Sort extends Component {
-    constructor(props) {
-        super(props);
-    }
-    
     onClick = (sortBy, sortValue) => {
       this.props.onSort(sortBy,sortValue);
     }

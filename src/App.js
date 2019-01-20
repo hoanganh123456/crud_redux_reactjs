@@ -104,17 +104,17 @@ class App extends Component {
   // generateID = () => {
   //   return this.s4() + this.s4() + "-" + this.s4() + "-" + this.s4() + this.s4() + "-" + this.s4() + this.s4()
   // }
-  onUpdateStatus = (id) => {
-    let {tasks} = this.state;
-    let index = this.findIndex(id);
-    if (index !== -1) {
-      tasks[index].status = !tasks[index].status;
-      this.setState({
-        tasks: tasks
-      })
-    }
-    localStorage.setItem("tasks",JSON.stringify(tasks));  
-  }
+  // onUpdateStatus = (id) => {
+  //   let {tasks} = this.state;
+  //   let index = this.findIndex(id);
+  //   if (index !== -1) {
+  //     tasks[index].status = !tasks[index].status;
+  //     this.setState({
+  //       tasks: tasks
+  //     })
+  //   }
+  //   localStorage.setItem("tasks",JSON.stringify(tasks));  
+  // }
   findIndex = (id) => {
     let {tasks} = this.state;
     let result = -1;
@@ -126,18 +126,18 @@ class App extends Component {
     });
     return result;
   }
-  onDelete = (id) => {
-    let {tasks} = this.state;
-    let index = this.findIndex(id);
-    if (index !== -1) {
-      tasks.splice(index,1);
-      this.setState({
-        tasks: tasks
-      })
-    }
-    localStorage.setItem("tasks",JSON.stringify(tasks)); 
-    this.onCloseForm(); 
-  }
+  // onDelete = (id) => {
+  //   let {tasks} = this.state;
+  //   let index = this.findIndex(id);
+  //   if (index !== -1) {
+  //     tasks.splice(index,1);
+  //     this.setState({
+  //       tasks: tasks
+  //     })
+  //   }
+  //   localStorage.setItem("tasks",JSON.stringify(tasks)); 
+  //   this.onCloseForm(); 
+  // }
   onShowForm = () => {
     this.setState({
       isDisplayForm: true
@@ -243,8 +243,8 @@ class App extends Component {
             <div className="row mt-15">
               <TaskList 
                 // tasks={ tasks } 
-                onUpdateStatus={ this.onUpdateStatus } 
-                onDelete = { this.onDelete } 
+                // onUpdateStatus={ this.onUpdateStatus } 
+                // onDelete = { this.onDelete } 
                 onUpdate = { this.onUpdate }
                 onFilter = { this.onFilter }
               />

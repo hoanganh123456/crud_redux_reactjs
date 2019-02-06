@@ -11,7 +11,7 @@ class App extends Component {
     this.state = {
       // tasks : [],
       // isDisplayForm: false,
-      editTaskList: null,
+      // editTaskList: null,
       filter : {
         name: '',
         status: -1
@@ -77,8 +77,18 @@ class App extends Component {
     //     editTaskList: null
     //   })
     // }
-    this.props.onToggleFrom();
-    
+    let { itemEditting } = this.props;
+    if (itemEditting && itemEditting.id !== null) {
+      this.props.onOpenFrom();
+
+    } else {
+      this.props.onToggleFrom();
+    }
+    this.props.onClearTask({
+      id: '',
+      name : '',
+      status : false
+    })  
   }
 
   onSubmit = (data) => {
@@ -197,10 +207,12 @@ class App extends Component {
     //     return task.name.toLowerCase().indexOf(keyword) !== -1;
     //   })
     // }
-    let elmTaskForm = isDisplayForm ? <TaskForm 
-      // onCloseForm = { this.onCloseForm } 
-      onSubmit = { this.onSubmit } 
-      editTaskList = { editTaskList }/> : '';
+
+    // let elmTaskForm = isDisplayForm ? <TaskForm 
+    //   // onCloseForm = { this.onCloseForm } 
+    //   onSubmit = { this.onSubmit } 
+    //   editTaskList = { editTaskList }/> : '';
+
     // if (sortBy === 'name' ) {
     //   tasks.sort((a,b) => {
     //     if (a.name > b.name) return sortValue;
@@ -224,7 +236,12 @@ class App extends Component {
         </div>
         <div className="row">
           <div className={ isDisplayForm ? 'col-xs-4 col-sm-4 col-md-4 col-lg-4' :'' }>
-            { elmTaskForm }
+            {/* { elmTaskForm } */}
+            <TaskForm 
+              // onCloseForm = { this.onCloseForm } 
+              // onSubmit = { this.onSubmit } 
+              // editTaskList = { editTaskList }
+            />
           </div>
           <div className={ isDisplayForm ? 'col-xs-8 col-sm-8 col-md-8 col-lg-8' : 'col-xs-12 col-sm-12 col-md-12 col-lg-12' }>
             <button type="button" className="btn btn-primary" onClick={ this.onFormToggle }>
@@ -245,7 +262,7 @@ class App extends Component {
                 // tasks={ tasks } 
                 // onUpdateStatus={ this.onUpdateStatus } 
                 // onDelete = { this.onDelete } 
-                onUpdate = { this.onUpdate }
+                // onUpdate = { this.onUpdate }
                 onFilter = { this.onFilter }
               />
             </div>
@@ -258,7 +275,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    isDisplayForm: state.isDisplayForm
+    isDisplayForm: state.isDisplayForm,
+    itemEditting: state.itemEditting
   };
 }
 
@@ -266,6 +284,12 @@ const mapDispatchToProps = (dispatch,props) => {
   return {
     onToggleFrom: () => {
       dispatch(actions.toggleForm())
+    },
+    onClearTask : (task) => {
+      dispatch(actions.editTask(task))
+    },
+    onOpenFrom: () => {
+      dispatch(actions.openForm())
     }
   };
 }

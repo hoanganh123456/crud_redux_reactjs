@@ -12,11 +12,11 @@ class App extends Component {
       // tasks : [],
       // isDisplayForm: false,
       // editTaskList: null,
-      filter : {
-        name: '',
-        status: -1
-      },
-      keyword: '',
+      // filter : {
+      //   name: '',
+      //   status: -1
+      // },
+      // keyword: '',
       sortBy : 'name',
       sortValue: 1
     }
@@ -91,22 +91,22 @@ class App extends Component {
     })  
   }
 
-  onSubmit = (data) => {
-    let { tasks } = this.state;
-    if(data.id === ""){
-      data.id = this.generateID();
-      tasks.push(data);
-    }
-    else {
-      let index = this.findIndex(data.id);
-      tasks[index] = data;
-    }
-    this.setState({
-      tasks : tasks,
-      // editTaskList: null
-    })
-    localStorage.setItem('tasks',JSON.stringify(tasks));
-  }
+  // onSubmit = (data) => {
+  //   let { tasks } = this.state;
+  //   if(data.id === ""){
+  //     data.id = this.generateID();
+  //     tasks.push(data);
+  //   }
+  //   else {
+  //     let index = this.findIndex(data.id);
+  //     tasks[index] = data;
+  //   }
+  //   this.setState({
+  //     tasks : tasks,
+  //     // editTaskList: null
+  //   })
+  //   localStorage.setItem('tasks',JSON.stringify(tasks));
+  // }
 
   // s4 = () => {
   //   return Math.floor(( 1 + Math.random() ) * 0x10000 ).toString(16).substring(1);
@@ -125,17 +125,17 @@ class App extends Component {
   //   }
   //   localStorage.setItem("tasks",JSON.stringify(tasks));  
   // }
-  findIndex = (id) => {
-    let {tasks} = this.state;
-    let result = -1;
-    tasks.forEach((task,index)=> {
-      if (task.id === id) {
-        result = index;
-        return result;
-      }
-    });
-    return result;
-  }
+  // findIndex = (id) => {
+  //   let {tasks} = this.state;
+  //   let result = -1;
+  //   tasks.forEach((task,index)=> {
+  //     if (task.id === id) {
+  //       result = index;
+  //       return result;
+  //     }
+  //   });
+  //   return result;
+  // }
   // onDelete = (id) => {
   //   let {tasks} = this.state;
   //   let index = this.findIndex(id);
@@ -148,11 +148,11 @@ class App extends Component {
   //   localStorage.setItem("tasks",JSON.stringify(tasks)); 
   //   this.onCloseForm(); 
   // }
-  onShowForm = () => {
-    this.setState({
-      isDisplayForm: true
-    })
-  }
+  // onShowForm = () => {
+  //   this.setState({
+  //     isDisplayForm: true
+  //   })
+  // }
   // onUpdate = (id) => {
   //   let {tasks} = this.state;
   //   let index = this.findIndex(id);
@@ -172,22 +172,22 @@ class App extends Component {
   //     }
   //   })
   // }
-  onSearch = (keyword) => {
-    this.setState({
-      keyword : keyword
-    })
-  }
-  onSort  = (sortBy,sortValue) => {
-    this.setState({
-      sortBy: sortBy,
-      sortValue: sortValue
-    })
-  }
+  // onSearch = (keyword) => {
+  //   this.setState({
+  //     keyword : keyword
+  //   })
+  // }
+  // onSort  = (sortBy,sortValue) => {
+  //   this.setState({
+  //     sortBy: sortBy,
+  //     sortValue: sortValue
+  //   })
+  // }
   render() {
     let {  //isDisplayForm, 
         // editTaskList,
         //  filter, 
-         sortBy, sortValue 
+        //  sortBy, sortValue 
     } = this.state;
     let { isDisplayForm } = this.props;
     // if (filter) {
@@ -254,10 +254,10 @@ class App extends Component {
               <span className="fa fa-plus mr-5" />Generate Data
             </button> */}
             <Control 
-              onSearch = { this.onSearch } 
-              onSort = { this.onSort }
-              sortBy = { sortBy }
-              sortValue = { sortValue }
+              // onSearch = { this.onSearch } 
+              // onSort = { this.onSort }
+              // sortBy = { sortBy }
+              // sortValue = { sortValue }
             />
             <div className="row mt-15">
               <TaskList 

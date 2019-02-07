@@ -47,6 +47,18 @@ export const editTask = (task) => {
 export const filterTable = (filter) => {
     return {
         type : types.FILTER_TABLE,
-        filter
+        filter // filter: filterName va filerStatus
+    }
+}
+export const searchTask = (keyword) => {
+    return {
+        type : types.SEARCH,
+        keyword
+    }
+}
+export const sortTask = (sort) => {
+    return {
+        type : types.SORT,
+        sort // sort: sort.by va sort.value
     }
 }

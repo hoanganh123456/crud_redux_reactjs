@@ -103,7 +103,7 @@ class App extends Component {
     }
     this.setState({
       tasks : tasks,
-      editTaskList: null
+      // editTaskList: null
     })
     localStorage.setItem('tasks',JSON.stringify(tasks));
   }
@@ -153,25 +153,25 @@ class App extends Component {
       isDisplayForm: true
     })
   }
-  onUpdate = (id) => {
-    let {tasks} = this.state;
-    let index = this.findIndex(id);
-    let editTaskList = tasks[index];
-    this.setState({
-      editTaskList: editTaskList
-    })
-    this.onShowForm();
-  }
-  onFilter = (filterName, filterStatus) => {
-    console.log(filterName + "-" + filterStatus);
-    filterStatus = parseInt(filterStatus,10);
-    this.setState({
-      filter : {
-        name: filterName.toLowerCase(),
-        status: filterStatus
-      }
-    })
-  }
+  // onUpdate = (id) => {
+  //   let {tasks} = this.state;
+  //   let index = this.findIndex(id);
+  //   let editTaskList = tasks[index];
+  //   this.setState({
+  //     editTaskList: editTaskList
+  //   })
+  //   this.onShowForm();
+  // }
+  // onFilter = (filterName, filterStatus) => {
+  //   console.log(filterName + "-" + filterStatus);
+  //   filterStatus = parseInt(filterStatus,10);
+  //   this.setState({
+  //     filter : {
+  //       name: filterName.toLowerCase(),
+  //       status: filterStatus
+  //     }
+  //   })
+  // }
   onSearch = (keyword) => {
     this.setState({
       keyword : keyword
@@ -185,23 +185,25 @@ class App extends Component {
   }
   render() {
     let {  //isDisplayForm, 
-        editTaskList, filter, sortBy, sortValue 
+        // editTaskList,
+        //  filter, 
+         sortBy, sortValue 
     } = this.state;
     let { isDisplayForm } = this.props;
-    if (filter) {
-      // if (filter.name) {
-      //   tasks = tasks.filter((task) => {
-      //     return task.name.toLowerCase().indexOf(filter.name) !== -1;
-      //   })
-      // }
-        // tasks = tasks.filter((task) => {
-        //   if (filter.status === -1) {
-        //     return task;
-        //   } else {
-        //     return task.status === (filter.status === 1 ? true : false);
-        //   }
-        // })
-    }
+    // if (filter) {
+    //   // if (filter.name) {
+    //   //   tasks = tasks.filter((task) => {
+    //   //     return task.name.toLowerCase().indexOf(filter.name) !== -1;
+    //   //   })
+    //   // }
+    //     // tasks = tasks.filter((task) => {
+    //     //   if (filter.status === -1) {
+    //     //     return task;
+    //     //   } else {
+    //     //     return task.status === (filter.status === 1 ? true : false);
+    //     //   }
+    //     // })
+    // }
     // if (keyword) {
     //   tasks = tasks.filter((task) => {
     //     return task.name.toLowerCase().indexOf(keyword) !== -1;
@@ -263,7 +265,7 @@ class App extends Component {
                 // onUpdateStatus={ this.onUpdateStatus } 
                 // onDelete = { this.onDelete } 
                 // onUpdate = { this.onUpdate }
-                onFilter = { this.onFilter }
+                // onFilter = { this.onFilter }
               />
             </div>
           </div>

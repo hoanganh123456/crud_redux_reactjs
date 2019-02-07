@@ -44,3 +44,9 @@ export const editTask = (task) => {
         task
     }
 }
+export const filterTable = (filter) => {
+    return {
+        type : types.FILTER_TABLE,
+        filter
+    }
+}
